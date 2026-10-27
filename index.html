@@ -4,6 +4,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Whack It!</title>
+<meta name="description" content="Upload a face, give it a name, and whack it. 30 seconds. How many can you hit?">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Whack It! Upload a face and whack it">
+<meta property="og:description" content="30 seconds. One face. How many whacks can you get?">
+<meta property="og:url" content="https://rapid-toast.github.io/whacit/">
+<meta property="og:image" content="https://rapid-toast.github.io/whacit/preview.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Whack It! Upload a face and whack it">
+<meta name="twitter:description" content="30 seconds. One face. How many whacks can you get?">
+<meta name="twitter:image" content="https://rapid-toast.github.io/whacit/preview.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;800&display=swap" rel="stylesheet">
 <style>
@@ -118,7 +130,11 @@ button.alt{background:transparent;color:#fff;border:2px solid #fff;box-shadow:no
   // GoatCounter events (queued until count.js has loaded)
   var q=[];
   function flush(){var g=window.goatcounter;if(!g||!g.count)return;while(q.length){try{g.count(q.shift());}catch(e){}}}
-  function track(n,t){q.push({path:"event-"+n,title:t||n,event:true});flush();}
+  var EVENT_SITE="whacit-events"; // optional: GoatCounter site code just for events, e.g. "whacit-events"
+  function track(n,t){
+    if(EVENT_SITE){try{new Image().src="https://"+EVENT_SITE+".goatcounter.com/count?p="+encodeURIComponent("event-"+n)+"&e=true&t="+encodeURIComponent(t||n)+"&rnd="+Math.random();}catch(e){}return;}
+    q.push({path:"event-"+n,title:t||n,event:true});flush();
+  }
   setInterval(flush,1000);
   // time on page: only counts seconds while the tab is visible
   var vis=0,marks=[10,30,60,120,300,600];
